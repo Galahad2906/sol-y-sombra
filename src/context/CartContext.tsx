@@ -19,7 +19,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const quitar = (id: number) => {
-    setCarrito((prev) => prev.filter((item) => item.id !== id));
+    setCarrito((prev) => {
+      const index = prev.findIndex((item) => item.id === id);
+      if (index === -1) return prev;
+
+      const nuevoCarrito = [...prev];
+      nuevoCarrito.splice(index, 1); // ✅ Elimina solo una unidad
+      return nuevoCarrito;
+    });
   };
 
   const limpiar = () => {
