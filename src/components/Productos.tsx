@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 
 const Productos = () => {
   const { agregar } = useCart();
+// Actualización para forzar deploy
 
   return (
     <section
