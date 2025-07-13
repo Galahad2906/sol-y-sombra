@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import type { CartItem } from "../types/product";
 
 const Checkout = () => {
   const { carrito, total, limpiar } = useCart();
