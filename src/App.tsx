@@ -1,3 +1,5 @@
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Productos from "./components/Productos";
 import Galeria from "./components/Galeria";
@@ -6,9 +8,10 @@ import BotonWhatsApp from "./components/BotonWhatsApp";
 import Loader from "./components/Loader";
 import Contacto from "./components/Contacto";
 import CarritoFlotante from "./components/CarritoFlotante";
+import Gracias from "./pages/Gracias";
+import Checkout from "./pages/Checkout";
 
-
-function App() {
+function Home() {
   return (
     <div className="bg-white text-gray-900 font-sans scroll-smooth overflow-x-hidden">
       {/* Loader inicial */}
@@ -44,13 +47,27 @@ function App() {
 
       {/* Contacto */}
       <Contacto />
-<CarritoFlotante />
+
+      {/* Carrito flotante */}
+      <CarritoFlotante />
 
       {/* Footer */}
       <footer className="text-center text-sm py-4 bg-gray-100 text-gray-600">
         © {new Date().getFullYear()} Sol y Sombra SRL. Todos los derechos reservados.
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/gracias" element={<Gracias />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
