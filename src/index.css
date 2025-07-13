@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Fijar scroll horizontal en todo el proyecto */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw; /* ✅ Esta línea impide que cualquier desborde fuerce scroll */
+  scroll-behavior: smooth;
+}
