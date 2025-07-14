@@ -2,6 +2,7 @@
 import { useCart } from "../context/CartContext";
 import type { CartItem, Product } from "../types/product";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner"; // ✅ Sonner
 
 interface Props {
   isOpen: boolean;
@@ -21,7 +22,7 @@ const CarritoModal = ({ isOpen, onClose }: Props) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 z-[9999] flex items-center justify-center">
-      <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg relative">
+      <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-lg relative animate-fade-in-scale">
         <button
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl"
           onClick={onClose}
@@ -93,7 +94,10 @@ const CarritoModal = ({ isOpen, onClose }: Props) => {
 
             <div className="flex justify-between gap-4">
               <button
-                onClick={limpiar}
+                onClick={() => {
+                  limpiar();
+                  toast.error("Carrito vaciado");
+                }}
                 className="flex-1 bg-red-100 text-red-600 px-4 py-2 rounded hover:bg-red-200 transition"
               >
                 Vaciar carrito
@@ -101,8 +105,18 @@ const CarritoModal = ({ isOpen, onClose }: Props) => {
 
               <button
                 onClick={() => {
-                  onClose();
-                  navigate("/checkout");
+                  toast.promise(
+                    new Promise((resolve) => setTimeout(resolve, 1000)),
+                    {
+                      loading: "Procesando compra...",
+                      success: () => {
+                        onClose(); // opcional, si querés cerrar el modal
+                        navigate("/checkout");
+                        return "Redirigido al checkout";
+                      },
+                      error: "Ocurrió un error",
+                    }
+                  );
                 }}
                 className="flex-1 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
               >

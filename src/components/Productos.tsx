@@ -1,10 +1,20 @@
+// src/components/Productos.tsx
+import { useState } from "react";
 import { products } from "../data/products";
 import type { Product } from "../types/product";
 import { useCart } from "../context/CartContext";
+import { toast } from "react-hot-toast";
 
 const Productos = () => {
   const { agregar } = useCart();
-// Actualización para forzar deploy
+  const [clickedId, setClickedId] = useState<number | null>(null);
+
+  const handleClick = (product: Product) => {
+    agregar(product);
+    setClickedId(product.id);
+    toast.success(`${product.title} añadido al carrito`);
+    setTimeout(() => setClickedId(null), 300);
+  };
 
   return (
     <section
@@ -35,9 +45,7 @@ const Productos = () => {
                 <h3 className="text-lg sm:text-xl font-semibold mb-1 break-words">
                   {product.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-1">
-                  {product.category}
-                </p>
+                <p className="text-sm text-gray-500 mb-1">{product.category}</p>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   {product.description}
                 </p>
@@ -46,8 +54,10 @@ const Productos = () => {
                 </p>
 
                 <button
-                  onClick={() => agregar(product)}
-                  className="mt-4 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+                  onClick={() => handleClick(product)}
+                  className={`mt-4 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition transform ${
+                    clickedId === product.id ? "animate-pulse-once" : ""
+                  }`}
                 >
                   Agregar al carrito
                 </button>

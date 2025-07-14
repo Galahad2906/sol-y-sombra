@@ -1,16 +1,25 @@
+// src/pages/Gracias.tsx
 import { useEffect, useState } from "react";
 import type { CartItem } from "../types/product";
 import { Link } from "react-router-dom";
 
 interface PedidoCompleto {
-  comprador: {
+  tipoCliente: "fisica" | "juridica";
+  datos: {
     nombre: string;
+    cedula: string;
+    razonSocial: string;
+    ruc: string;
     correo: string;
     telefono: string;
+    direccion: string;
+    ciudad: string;
+    departamento: string;
   };
   productos: CartItem[];
   total: number;
   fecha: string;
+  requiereFactura?: boolean;
 }
 
 const Gracias = () => {
@@ -31,15 +40,31 @@ const Gracias = () => {
           ¡Gracias por tu compra!
         </h1>
 
-        {!pedido ? (
+        {!pedido || !pedido.datos ? (
           <p className="text-center text-gray-600">No hay datos del pedido.</p>
         ) : (
           <>
             <div className="mb-6 text-sm text-gray-700 space-y-1">
-              <p><strong>Nombre:</strong> {pedido.comprador.nombre}</p>
-              <p><strong>Correo:</strong> {pedido.comprador.correo}</p>
-              <p><strong>Teléfono:</strong> {pedido.comprador.telefono}</p>
+              {pedido.tipoCliente === "fisica" ? (
+                <>
+                  <p><strong>Nombre:</strong> {pedido.datos.nombre}</p>
+                  <p><strong>Cédula:</strong> {pedido.datos.cedula}</p>
+                </>
+              ) : (
+                <>
+                  <p><strong>Razón Social:</strong> {pedido.datos.razonSocial}</p>
+                  <p><strong>RUC:</strong> {pedido.datos.ruc}</p>
+                </>
+              )}
+              <p><strong>Correo:</strong> {pedido.datos.correo}</p>
+              <p><strong>Teléfono:</strong> {pedido.datos.telefono}</p>
+              <p><strong>Dirección:</strong> {pedido.datos.direccion}</p>
+              <p><strong>Ciudad:</strong> {pedido.datos.ciudad}</p>
+              <p><strong>Departamento:</strong> {pedido.datos.departamento}</p>
               <p><strong>Fecha:</strong> {new Date(pedido.fecha).toLocaleString()}</p>
+              {pedido.requiereFactura && (
+                <p className="text-green-700 font-medium">✔ Se solicitó factura electrónica</p>
+              )}
             </div>
 
             <div className="space-y-4">

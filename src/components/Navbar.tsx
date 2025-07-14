@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all ${
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
-      } text-gray-800 overflow-x-hidden`} // 👈 Agregado overflow-x-hidden
+      } text-gray-800 overflow-x-hidden`}
       role="navigation"
       aria-label="Menú principal"
     >
@@ -35,6 +35,7 @@ const Navbar = () => {
           <a href="#galeria" className="hover:text-marfil transition-colors">Galería</a>
           <a href="#nosotros" className="hover:text-marfil transition-colors">Sobre Nosotros</a>
           <a href="#contacto" className="hover:text-marfil transition-colors">Contacto</a>
+          <a href="/historial" className="hover:text-green-700 transition-colors">Historial</a> {/* 👈 Nuevo enlace */}
         </div>
 
         {/* Botón hamburguesa mobile */}
@@ -49,12 +50,13 @@ const Navbar = () => {
 
       {/* Menú mobile desplegable */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-md w-full overflow-x-hidden"> {/* 👈 agregado */}
+        <div className="md:hidden bg-white shadow-md w-full overflow-x-hidden">
           <div className="flex flex-col items-center gap-4 py-4 text-base">
             <a href="#productos" onClick={() => setMenuOpen(false)} className="hover:text-marfil">Productos</a>
             <a href="#galeria" onClick={() => setMenuOpen(false)} className="hover:text-marfil">Galería</a>
             <a href="#nosotros" onClick={() => setMenuOpen(false)} className="hover:text-marfil">Sobre Nosotros</a>
             <a href="#contacto" onClick={() => setMenuOpen(false)} className="hover:text-marfil">Contacto</a>
+            <a href="/historial" onClick={() => setMenuOpen(false)} className="hover:text-green-700">Historial</a> {/* 👈 Nuevo */}
           </div>
         </div>
       )}

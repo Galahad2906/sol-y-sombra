@@ -1,5 +1,7 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner"; // ✅ TOASTER DE SONNER
+
 import Navbar from "./components/Navbar";
 import Productos from "./components/Productos";
 import Galeria from "./components/Galeria";
@@ -10,17 +12,17 @@ import Contacto from "./components/Contacto";
 import CarritoFlotante from "./components/CarritoFlotante";
 import Gracias from "./pages/Gracias";
 import Checkout from "./pages/Checkout";
+import Historial from "./pages/Historial";
 
 function Home() {
   return (
     <div className="bg-white text-gray-900 font-sans scroll-smooth overflow-x-hidden">
-      {/* Loader inicial */}
-      <Loader />
+      {/* ✅ Toaster de Sonner al principio del layout */}
+      <Toaster richColors position="top-right" />
 
-      {/* Barra de navegación */}
+      <Loader />
       <Navbar />
 
-      {/* Sección Hero */}
       <section
         id="hero"
         className="min-h-screen flex items-center justify-center bg-marfil px-4 py-12 md:py-20"
@@ -33,25 +35,13 @@ function Home() {
         </h1>
       </section>
 
-      {/* Sección de productos */}
       <Productos />
-
-      {/* Galería de trabajos */}
       <Galeria />
-
-      {/* Sobre nosotros */}
       <SobreNosotros />
-
-      {/* Botón flotante de WhatsApp */}
       <BotonWhatsApp />
-
-      {/* Contacto */}
       <Contacto />
-
-      {/* Carrito flotante */}
       <CarritoFlotante />
 
-      {/* Footer */}
       <footer className="text-center text-sm py-4 bg-gray-100 text-gray-600">
         © {new Date().getFullYear()} Sol y Sombra SRL. Todos los derechos reservados.
       </footer>
@@ -66,6 +56,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/gracias" element={<Gracias />} />
+        <Route path="/historial" element={<Historial />} />
       </Routes>
     </BrowserRouter>
   );
