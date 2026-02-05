@@ -15,7 +15,6 @@ const Catalog = lazy(() => import('./pages/Catalog'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Services = lazy(() => import('./pages/Services'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-const FramingCalculator = lazy(() => import('./components/calculator/FramingCalculator'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +44,6 @@ function App() {
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/galeria" element={<Gallery />} />
             <Route path="/servicios" element={<Services />} />
-            <Route path="/calculator" element={<FramingCalculator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
