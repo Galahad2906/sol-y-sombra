@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Download } from 'lucide-react';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { calculateFramePrice, GLASS_TYPES, formatCurrency } from '../../services/pricingService';
 
 const FramingCalculator = () => {
@@ -25,6 +25,14 @@ const FramingCalculator = () => {
         if (!result) return;
 
         const doc = new jsPDF();
+
+        // Ensure autoTable is available
+        // Note: In some setups autoTable attaches automatically, in others it needs to be called.
+        // We will call it directly via the imported function if doc.autoTable is missing, 
+        // OR we just rely on the import side-effect but verify the import style.
+        // Better approach for Vite/ESM:
+        // import autoTable from 'jspdf-autotable';
+        // autoTable(doc, { ... });
 
         // Header
         doc.setFont("helvetica", "bold");
@@ -83,7 +91,7 @@ const FramingCalculator = () => {
             [{ content: "PRECIO FINAL", styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }, { content: formatCurrency(result.prices.final), styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }]
         ];
 
-        doc.autoTable({
+        autoTable(doc, {
             startY: 45,
             head: [["Concepto", "Monto"]],
             body: rows,
