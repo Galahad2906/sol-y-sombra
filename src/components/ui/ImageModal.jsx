@@ -1,24 +1,8 @@
 import { X, ChevronLeft, ChevronRight, Info, ZoomIn, ZoomOut } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 const ImageModal = ({ isOpen, onClose, imageSrc, altText, title, description, recommendation, onNext, onPrev, hasNext, hasPrev }) => {
-    const [scale, setScale] = useState(1);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [isDragging, setIsDragging] = useState(false);
-    const dragStart = useRef({ x: 0, y: 0 });
-
-    // Reset zoom and position when image changes
-    useEffect(() => {
-        setScale(1);
-        setPosition({ x: 0, y: 0 });
-    }, [imageSrc]);
-
-    // Reset position when fully zoomed out
-    useEffect(() => {
-        if (scale === 1) {
-            setPosition({ x: 0, y: 0 });
-        }
-    }, [scale]);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -32,6 +16,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc, altText, title, description, re
             document.body.style.overflow = 'hidden'; // Prevent scrolling
         } else {
             document.body.style.overflow = 'unset';
+            // Also reset overflow when closed just in case
         }
 
         return () => {
@@ -39,38 +24,6 @@ const ImageModal = ({ isOpen, onClose, imageSrc, altText, title, description, re
             document.body.style.overflow = 'unset';
         };
     }, [isOpen, onClose, onNext, onPrev]);
-
-    const handleZoomIn = (e) => {
-        e.stopPropagation();
-        setScale(prev => Math.min(prev + 0.5, 3));
-    };
-
-    const handleZoomOut = (e) => {
-        e.stopPropagation();
-        setScale(prev => Math.max(prev - 0.5, 1));
-    };
-
-    const handleMouseDown = (e) => {
-        if (scale > 1) {
-            e.preventDefault();
-            setIsDragging(true);
-            dragStart.current = { x: e.clientX - position.x, y: e.clientY - position.y };
-        }
-    };
-
-    const handleMouseMove = (e) => {
-        if (isDragging && scale > 1) {
-            e.preventDefault();
-            setPosition({
-                x: e.clientX - dragStart.current.x,
-                y: e.clientY - dragStart.current.y
-            });
-        }
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
 
     if (!isOpen) return null;
 
@@ -112,52 +65,55 @@ const ImageModal = ({ isOpen, onClose, imageSrc, altText, title, description, re
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Image Section */}
-                <div
-                    className="w-full md:w-2/3 h-[50vh] md:h-[80vh] bg-gray-100 flex items-center justify-center p-8 relative overflow-hidden"
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                >
-                    <div className="absolute top-4 right-4 z-10 flex gap-2">
-                        <button
-                            onClick={handleZoomOut}
-                            disabled={scale <= 1}
-                            className="p-2 bg-white/80 hover:bg-white text-sys-black rounded-full shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            aria-label="Zoom Out"
-                        >
-                            <ZoomOut size={24} />
-                        </button>
-                        <button
-                            onClick={handleZoomIn}
-                            disabled={scale >= 3}
-                            className="p-2 bg-white/80 hover:bg-white text-sys-black rounded-full shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            aria-label="Zoom In"
-                        >
-                            <ZoomIn size={24} />
-                        </button>
-                    </div>
+                <div className="w-full md:w-2/3 h-[50vh] md:h-[80vh] bg-gray-100 flex items-center justify-center p-0 md:p-8 relative overflow-hidden">
 
-                    <div className="w-full h-full flex items-center justify-center cursor-move"
-                        style={{
-                            cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default',
-                            touchAction: 'none'
-                        }}
-                        onMouseDown={handleMouseDown}
+                    <TransformWrapper
+                        initialScale={1}
+                        initialPositionX={0}
+                        initialPositionY={0}
+                        centerOnInit={true}
+                        wheel={{ disabled: true }} // Disable wheel zoom to prevent conflict with scrolling if any
+                        pinch={{ disabled: false }} // Enable pinch
+                        doubleClick={{ disabled: false }} // Enable double click
                     >
-                        <img
-                            src={imageSrc}
-                            alt={altText || 'Enlarged image'}
-                            style={{
-                                transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
-                                transition: isDragging ? 'none' : 'transform 0.3s ease-out',
-                                maxWidth: '100%',
-                                maxHeight: '100%',
-                                objectFit: 'contain'
-                            }}
-                            className="drop-shadow-xl select-none"
-                            draggable="false"
-                        />
-                    </div>
+                        {({ zoomIn, zoomOut, resetTransform }) => (
+                            <>
+                                {/* Controls - HIDDEN ON MOBILE (flex on md and up) */}
+                                <div className="absolute top-4 right-4 z-10 hidden md:flex gap-2">
+                                    <button
+                                        onClick={() => zoomOut()}
+                                        className="p-2 bg-white/80 hover:bg-white text-sys-black rounded-full shadow-lg transition-colors"
+                                        aria-label="Zoom Out"
+                                    >
+                                        <ZoomOut size={24} />
+                                    </button>
+                                    <button
+                                        onClick={() => zoomIn()}
+                                        className="p-2 bg-white/80 hover:bg-white text-sys-black rounded-full shadow-lg transition-colors"
+                                        aria-label="Zoom In"
+                                    >
+                                        <ZoomIn size={24} />
+                                    </button>
+                                </div>
+
+                                {/* Actual Image */}
+                                <TransformComponent
+                                    wrapperClass="!w-full !h-full flex items-center justify-center"
+                                    contentClass="!w-full !h-full flex items-center justify-center"
+                                >
+                                    <img
+                                        src={imageSrc}
+                                        alt={altText || 'Enlarged image'}
+                                        className="max-w-full max-h-full object-contain drop-shadow-xl select-none"
+                                        draggable="false"
+                                    />
+                                </TransformComponent>
+
+                                {/* Reset transform when image changes */}
+                                <ResetHandler imageSrc={imageSrc} resetTransform={resetTransform} />
+                            </>
+                        )}
+                    </TransformWrapper>
                 </div>
 
                 {/* Info Section */}
@@ -193,6 +149,14 @@ const ImageModal = ({ isOpen, onClose, imageSrc, altText, title, description, re
             </div>
         </div>
     );
+};
+
+// Helper to reset zoom when image changes
+const ResetHandler = ({ imageSrc, resetTransform }) => {
+    useEffect(() => {
+        resetTransform();
+    }, [imageSrc, resetTransform]);
+    return null;
 };
 
 export default ImageModal;
