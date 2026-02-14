@@ -5,6 +5,9 @@ import Layout from './components/layout/Layout';
 import { Analytics } from '@vercel/analytics/react';
 import LoadingScreen from './components/ui/LoadingScreen';
 import ScrollToTop from './components/ui/ScrollToTop';
+import SmoothScroll from './components/ui/SmoothScroll';
+import CustomCursor from './components/ui/CustomCursor';
+import NoiseOverlay from './components/ui/NoiseOverlay';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -33,6 +36,9 @@ function App() {
 
   return (
     <HelmetProvider>
+      <SmoothScroll />
+      <CustomCursor />
+      <NoiseOverlay />
       <ScrollToTop />
       <Layout>
         <Suspense fallback={<LoadingScreen />}>
