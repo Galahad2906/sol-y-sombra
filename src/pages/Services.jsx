@@ -5,7 +5,8 @@ import { ArrowLeft } from 'lucide-react';
 import { getImage, STATIC_IMAGES } from '../utils/image-util';
 import SEO from '../components/seo/SEO';
 import CurrencySection from '../components/services/CurrencySection';
-import FramingCalculator from '../components/calculator/FramingCalculator';
+// import FramingCalculator from '../components/calculator/FramingCalculator'; // Hiding for now as per request
+import ContactSection from '../components/services/ContactSection';
 
 const Services = () => {
     const { t } = useLanguage();
@@ -43,9 +44,9 @@ const Services = () => {
                     </p>
                 </div>
 
-                {/* Calculator Section */}
+                {/* Q&A / Contact Section */}
                 <div className="h-fit top-24 sticky">
-                    <FramingCalculator />
+                    <ContactSection />
                 </div>
             </div>
 
