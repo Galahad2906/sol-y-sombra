@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram, Facebook } from 'lucide-react';
 import SolYSombraLogo from '../ui/SolYSombraLogo';
 
 const Navbar = () => {
@@ -15,6 +15,19 @@ const Navbar = () => {
             </Link>
 
             <div className="flex items-center gap-6">
+                {/* Social Links */}
+                <div className="hidden sm:flex items-center gap-4 text-sys-black">
+                    <a href="https://www.instagram.com/solysombrasrl/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">
+                        <Instagram size={24} strokeWidth={1.5} />
+                    </a>
+                    <a href="https://www.facebook.com/p/Sol-Y-Sombra-SRL-100036214825882/?locale=es_LA" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">
+                        <Facebook size={24} strokeWidth={1.5} />
+                    </a>
+                </div>
+
+                {/* Vertical Divider */}
+                <div className="hidden sm:block h-6 w-px bg-gray-300"></div>
+
                 {/* Language Selector */}
                 <div className="flex items-center gap-2 text-sm font-bold tracking-wide">
                     {['es', 'en', 'de'].map((l) => (
