@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Paintbrush } from 'lucide-react';
 
 const CustomCursor = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -29,13 +30,12 @@ const CustomCursor = () => {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-8 h-8 border border-brand-gold rounded-full pointer-events-none z-50 flex items-center justify-center mix-blend-difference"
+            className="fixed top-0 left-0 pointer-events-none z-50 flex items-center justify-center mix-blend-difference"
             animate={{
-                x: mousePosition.x - 16,
-                y: mousePosition.y - 16,
-                scale: isHovered ? 1.5 : 1,
-                opacity: isHovered ? 0.8 : 0.4,
-                backgroundColor: isHovered ? '#c5a059' : 'transparent',
+                x: mousePosition.x - 12, // Offset half of the icon size
+                y: mousePosition.y - 12,
+                scale: isHovered ? 1.4 : 1,
+                opacity: isHovered ? 1 : 0.6,
             }}
             transition={{
                 type: "spring",
@@ -44,7 +44,15 @@ const CustomCursor = () => {
                 mass: 0.1
             }}
         >
-            <div className="w-1 h-1 bg-brand-gold rounded-full" />
+            <Paintbrush
+                size={24}
+                className="text-brand-gold"
+                style={{
+                    // Rotate the brush slightly when hovered as if it's painting
+                    transform: isHovered ? 'rotate(-45deg)' : 'rotate(-15deg)',
+                    transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                }}
+            />
         </motion.div>
     );
 };
