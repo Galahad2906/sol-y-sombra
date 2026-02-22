@@ -6,7 +6,6 @@ import { Analytics } from '@vercel/analytics/react';
 import LoadingScreen from './components/ui/LoadingScreen';
 import ScrollToTop from './components/ui/ScrollToTop';
 import SmoothScroll from './components/ui/SmoothScroll';
-import CustomCursor from './components/ui/CustomCursor';
 import NoiseOverlay from './components/ui/NoiseOverlay';
 
 // Lazy load pages
@@ -37,7 +36,6 @@ function App() {
   return (
     <HelmetProvider>
       <SmoothScroll />
-      <CustomCursor />
       <NoiseOverlay />
       <ScrollToTop />
       <Layout>
