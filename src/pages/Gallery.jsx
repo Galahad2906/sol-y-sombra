@@ -71,7 +71,7 @@ const Gallery = () => {
                                 className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
                             />
                             <div className="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/70 to-transparent w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <p className="text-white text-xl font-serif">Example Work {index + 1}</p>
+                                <p className="text-white text-xl font-serif">{t('gallery_item_label')} {index + 1}</p>
                             </div>
                         </div>
                     </div>
