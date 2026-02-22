@@ -5,13 +5,24 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    cssMinify: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['framer-motion', 'lucide-react']
+          'react-vendor': ['react', 'react-dom'],
+          'router-vendor': ['react-router-dom'],
+          'ui-framer': ['framer-motion'],
+          'ui-lucide': ['lucide-react'],
+          'supabase-js': ['@supabase/supabase-js'],
+          'utils-pdf': ['jspdf', 'jspdf-autotable', 'html2canvas']
         }
       }
     }
+  },
+  esbuild: {
+    drop: ['console', 'debugger']
   }
 })
