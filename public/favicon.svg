@@ -1,25 +1,21 @@
-<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .frame { stroke: black; stroke-width: 5; fill: none; }
-    .text { fill: black; stroke: none; }
-    @media (prefers-color-scheme: dark) {
-      .frame { stroke: white; }
-      .text { fill: white; }
-    }
-  </style>
-  
-  <!-- Frame -->
-  <path class="frame" d="M 20 40 L 80 40" />
-  <path class="frame" d="M 220 40 L 280 40" />
-  <path class="frame" d="M 20 40 L 20 120" />
-  <path class="frame" d="M 280 40 L 280 120" />
-  <path class="frame" d="M 20 120 L 70 120" />
-  <path class="frame" d="M 230 120 L 280 120" />
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E7E9" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA771C" />
+    </linearGradient>
+  </defs>
 
-  <!-- Text -->
-  <g class="text">
-    <text x="150" y="60" text-anchor="middle" font-family="serif" font-style="italic" font-size="55">Arte y</text>
-    <text x="150" y="105" text-anchor="middle" font-family="serif" font-style="italic" font-size="60">Enmarcados</text>
-    <text x="150" y="130" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" letter-spacing="2">SOL Y SOMBRA SRL</text>
-  </g>
+  <!-- Background -->
+  <rect x="4" y="4" width="92" height="92" rx="16" fill="#111111"/>
+  
+  <!-- Outer Frame -->
+  <rect x="18" y="18" width="64" height="64" rx="2" fill="none" stroke="url(#gold)" stroke-width="4"/>
+  
+  <!-- Inner Passepartout Line -->
+  <rect x="25" y="25" width="50" height="50" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.7"/>
+
+  <!-- Letter 'S' -->
+  <text x="50" y="66" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-style="italic" font-weight="bold" fill="url(#gold)" text-anchor="middle">S</text>
 </svg>
