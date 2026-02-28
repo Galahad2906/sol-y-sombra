@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { catalogItems } from '../data/items';
 import { getImage } from '../utils/image-util';
 import { ArrowLeft } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../components/seo/SEO';
 
 const Catalog = () => {
@@ -12,16 +13,24 @@ const Catalog = () => {
 
     const filteredItems = filter === 'all'
         ? catalogItems
-        : catalogItems.filter(item => item.size === filter);
+        : catalogItems.filter(item => item.size === filter || item.primaryColor === filter);
 
-    const sizes = ['A1', 'A2', 'A3', 'A4'];
+    const filterOptions = [
+        { label: t('catalog_filter_all') || 'Todos', value: 'all' },
+        { label: 'A1', value: 'A1' },
+        { label: 'A2', value: 'A2' },
+        { label: 'A3', value: 'A3' },
+        { label: 'A4', value: 'A4' },
+        { label: 'Negro', value: 'Negro' },
+        { label: 'Blanco', value: 'Blanco' },
+        { label: 'Madera', value: 'Madera' },
+        { label: 'Dorado', value: 'Dorado' },
+    ];
 
     const handleAddToQuote = (item) => {
-        // In a real app this would add to a cart context. 
-        // For now, redirect to Services as per original behavior.
-        // We could pass state via location, but original just alerted.
-        alert(`${item.size} - ${item.style} - ${t('catalog_alert_added')}`);
-        window.location.href = '/servicios'; // Using href to ensure clean state or use navigate
+        alert(`${item.size} - ${item.style} - Añadido a consulta`);
+        // We use navigate or href
+        window.location.href = '/servicios';
     };
 
     return (
@@ -40,52 +49,62 @@ const Catalog = () => {
                 </div>
 
                 {/* Filters */}
-                <div className="flex gap-2 overflow-x-auto pb-2">
-                    <button
-                        onClick={() => setFilter('all')}
-                        className={`px-4 py-2 rounded-full border transition-colors whitespace-nowrap ${filter === 'all' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-black'}`}
-                    >
-                        {t('catalog_filter_all')}
-                    </button>
-                    {sizes.map(size => (
+                <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
+                    {filterOptions.map(option => (
                         <button
-                            key={size}
-                            onClick={() => setFilter(size)}
-                            className={`px-4 py-2 rounded-full border transition-colors whitespace-nowrap ${filter === size ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-black'}`}
+                            key={option.value}
+                            onClick={() => setFilter(option.value)}
+                            className={`px-4 py-2 rounded-full border text-sm font-bold transition-all duration-300 whitespace-nowrap ${filter === option.value
+                                ? 'bg-black text-white border-black shadow-md transform scale-105'
+                                : 'bg-white text-gray-600 border-gray-200 hover:border-black hover:text-black'
+                                }`}
                         >
-                            {size}
+                            {option.label}
                         </button>
                     ))}
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredItems.map(item => (
-                    <div key={item.id} className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
-                        <div className="relative overflow-hidden aspect-[3/4] bg-gray-100">
-                            <img
-                                src={getImage(item.img)}
-                                alt={item.style}
-                                className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute top-2 right-2 bg-black text-white text-xs font-bold px-2 py-1">{item.size}</div>
-                        </div>
-                        <div className="p-6">
-                            <div className="flex justify-between items-start mb-2">
-                                <h3 className="font-serif font-bold text-lg">{item.style}</h3>
-                                <span className="font-bold text-gray-900">Gs. {item.price.toLocaleString('es-PY')}</span>
+            <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <AnimatePresence>
+                    {filteredItems.map(item => (
+                        <motion.div
+                            layout
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.3 }}
+                            key={item.id}
+                            className="bg-white border border-gray-200 rounded-sm shadow-sm hover:shadow-lg transition-shadow overflow-hidden group"
+                        >
+                            <div className="relative overflow-hidden aspect-[3/4] bg-gray-100">
+                                <img
+                                    src={getImage(item.img)}
+                                    alt={item.style}
+                                    className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                                    <span className="bg-black text-white text-xs font-bold px-2 py-1 shadow-sm">{item.size}</span>
+                                    <span className="bg-white/90 backdrop-blur-sm text-black border border-black text-[10px] font-bold px-2 py-1 shadow-sm uppercase">{item.primaryColor}</span>
+                                </div>
                             </div>
-                            <p className="text-sm text-gray-500 mb-4">{item.color} - {t('catalog_glass_matte')}</p>
-                            <button
-                                onClick={() => handleAddToQuote(item)}
-                                className="w-full border border-black text-black font-bold py-2 hover:bg-black hover:text-white transition-colors uppercase text-sm tracking-wide"
-                            >
-                                {t('catalog_add_quote')}
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                            <div className="p-6">
+                                <div className="flex justify-between items-start mb-2">
+                                    <h3 className="font-serif font-bold text-lg">{item.style}</h3>
+                                    <span className="font-bold text-gray-900">Gs. {item.price.toLocaleString('es-PY')}</span>
+                                </div>
+                                <p className="text-sm text-gray-500 mb-4">{item.color} - {t('catalog_glass_matte')}</p>
+                                <button
+                                    onClick={() => handleAddToQuote(item)}
+                                    className="w-full border border-black text-black font-bold py-2 hover:bg-black hover:text-white transition-colors uppercase text-sm tracking-wide"
+                                >
+                                    {t('catalog_add_quote')}
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </motion.div>
         </div>
     );
 };

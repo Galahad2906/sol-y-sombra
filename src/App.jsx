@@ -19,6 +19,21 @@ const Services = lazy(() => import('./pages/Services'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Fast simulated delay to show the animation briefly
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <HelmetProvider>
       <SmoothScroll />
