@@ -9,7 +9,7 @@ const StructuredData = () => {
         "description": "Enmarcados personalizados y galería de arte en Asunción, Paraguay. Calidad artesanal y la mayor variedad de molduras.",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Av. Aviadores del Chaco 2864",
+            "streetAddress": "Aviadores del Chaco y Molas López",
             "addressLocality": "Asunción",
             "addressRegion": "Asunción",
             "postalCode": "001401",
