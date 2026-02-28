@@ -116,15 +116,15 @@ const Molduras = () => {
                             className="group cursor-pointer"
                             onClick={() => setSelectedImage(image)}
                         >
-                            <div className="aspect-square overflow-hidden bg-white mb-4 rounded-sm shadow-sm relative flex items-center justify-center">
+                            <div className="aspect-square overflow-hidden bg-sys-light mb-6 relative flex items-center justify-center group-hover:shadow-md transition-shadow duration-500">
                                 <img
                                     src={image}
                                     alt={`Moldura SYS ${titleNumber}`}
-                                    className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                                    className="w-full h-full object-contain p-8 transition-transform duration-[1500ms] ease-out group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-brand-gold/5 transition-colors duration-500"></div>
                             </div>
-                            <h3 className="text-xl font-bold font-serif text-center text-gray-800">SYS {titleNumber}</h3>
+                            <h3 className="text-lg font-serif text-center text-sys-black tracking-widest">SYS {titleNumber}</h3>
                         </div>
                     );
                 })}

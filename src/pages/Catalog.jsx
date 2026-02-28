@@ -26,7 +26,11 @@ const Catalog = () => {
 
     return (
         <div className="animate-in fade-in duration-500">
-            {/* SEO Removed for Debugging */}
+            <SEO
+                title="Catálogo"
+                description="Catálogo de cuadros decorativos en stock. Encuentre arte listo para llevar en Sol y Sombra, Asunción, Paraguay."
+                keywords="catalogo cuadros, laminas decorativas, cuadros listos, arte asuncion, enmarcados en stock"
+            />
             <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                     <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:bg-gray-100 p-2 rounded transition-colors text-sys-black">

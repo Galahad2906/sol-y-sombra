@@ -4,10 +4,14 @@
 
 /* Custom Styles */
 body {
-    background-color: #f5f5f5;
-    /* sys-light fallback */
-    color: #1a1a1a;
-    /* sys-black */
+    background-color: #fafafa;
+    color: #0a0a0a;
+}
+
+/* Custom Text Selection */
+::selection {
+    background-color: #b5924e;
+    color: #ffffff;
 }
 
 /* Animations */
@@ -27,22 +31,22 @@ body {
     }
 }
 
-/* Custom Scrollbar */
+/* Premium Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+    background: #e5e5e5;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #b5924e;
 }
 
 /* Utilities */

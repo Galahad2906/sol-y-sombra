@@ -7,10 +7,10 @@ export default {
     theme: {
         extend: {
             colors: {
-                'brand-gold': '#c5a059',
-                'sys-black': '#1a1a1a',
-                'sys-gray': '#4a4a4a',
-                'sys-light': '#f5f5f5',
+                'brand-gold': '#b5924e', // Deeper, more elegant gold
+                'sys-black': '#0a0a0a',  // Richer black for higher contrast
+                'sys-gray': '#333333',   // Darker gray for typography
+                'sys-light': '#fafafa',  // Pure off-white
             },
             fontFamily: {
                 sans: ['Lato', 'sans-serif'],

@@ -74,7 +74,7 @@ export const translations = {
         gallery_workshop_caption: "Nuestro Taller Artesanal",
 
         // Footer
-        footer_desc: "Arte y Enmarcados en Asunción.\nCalidad artesanal desde 2010.",
+        footer_desc: "Arte y Enmarcados en Asunción.\nCalidad artesanal desde 1995.",
         footer_contact: "Contacto",
         footer_location: "Ubicación",
         footer_city: "Asunción, Paraguay",
@@ -169,7 +169,7 @@ export const translations = {
         gallery_workshop_caption: "Our Artisanal Workshop",
 
         // Footer
-        footer_desc: "Art and Framing in Asunción.\nArtisanal quality since 2010.",
+        footer_desc: "Art and Framing in Asunción.\nArtisanal quality since 1995.",
         footer_contact: "Contact",
         footer_location: "Location",
         footer_city: "Asunción, Paraguay",
@@ -264,7 +264,7 @@ export const translations = {
         gallery_workshop_caption: "Unsere Handwerkswerkstatt",
 
         // Footer
-        footer_desc: "Kunst und Einrahmungen in Asunción.\nHandwerkliche Qualität seit 2010.",
+        footer_desc: "Kunst und Einrahmungen in Asunción.\nHandwerkliche Qualität seit 1995.",
         footer_contact: "Kontakt",
         footer_location: "Standort",
         footer_city: "Asunción, Paraguay",

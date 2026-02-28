@@ -18,28 +18,28 @@ const Services = () => {
                 description="Cotice su enmarcado online. Calculadora de presupuestos para marcos a medida. Servicios de restauración y conservación de arte."
                 keywords="presupuesto marcos, calculadora enmarcados, restauracion cuadros, precio marcos asuncion, vidrio antireflejo"
             />
-            <div className="mb-8 flex items-center gap-4">
+            <div className="mb-12 flex items-center gap-4">
                 <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:bg-gray-100 p-2 rounded transition-colors text-sys-black">
                     <ArrowLeft /> <span>{t('back')}</span>
                 </Link>
-                <h2 className="text-4xl font-serif font-bold">{t('nav_services')}</h2>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-wide text-sys-black">{t('nav_services')}</h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 {/* Info Section */}
                 <div>
                     <img
                         src={getImage(STATIC_IMAGES.SERVICES_MAIN)}
                         alt="Servicios"
-                        className="w-full h-64 object-cover mb-6 rounded-sm grayscale"
+                        className="w-full h-80 object-cover mb-10 rounded-sm grayscale opacity-90"
                     />
-                    <h3 className="text-2xl font-serif font-bold mb-4">{t('services_framing_title')}</h3>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <h3 className="text-3xl font-serif text-sys-black mb-6">{t('services_framing_title')}</h3>
+                    <p className="text-xl text-sys-gray mb-10 leading-loose font-light">
                         {t('services_framing_text')}
                     </p>
 
-                    <h3 className="text-2xl font-serif font-bold mb-4">{t('services_restoration_title')}</h3>
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <h3 className="text-3xl font-serif text-sys-black mb-6">{t('services_restoration_title')}</h3>
+                    <p className="text-xl text-sys-gray mb-10 leading-loose font-light">
                         {t('services_restoration_text')}
                     </p>
                 </div>

@@ -9,8 +9,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-200 h-28 flex items-center justify-between px-6 lg:px-12 shadow-sm transition-all duration-300">
-            <Link to="/" className="flex items-center cursor-pointer h-full py-2">
+        <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 h-28 flex items-center justify-between px-6 lg:px-12 transition-all duration-500">
+            <Link to="/" className="flex items-center cursor-pointer h-full py-2 hover:opacity-80 transition-opacity">
                 <SolYSombraLogo className="h-full w-auto" />
             </Link>
 
@@ -26,7 +26,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Vertical Divider */}
-                <div className="hidden sm:block h-6 w-px bg-gray-300"></div>
+                <div className="hidden sm:block h-8 w-[1px] bg-gray-200"></div>
 
                 {/* Language Selector */}
                 <div className="flex items-center gap-2 text-sm font-bold tracking-wide">

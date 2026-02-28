@@ -45,7 +45,11 @@ const Gallery = () => {
 
     return (
         <div className="animate-in fade-in duration-500">
-            {/* SEO Removed for Debugging */}
+            <SEO
+                title="Galería de Trabajos"
+                description="Explore nuestra galería de cuadros enmarcados, ejemplos de nuestro taller artesanal y composiciones de salón en Sol y Sombra."
+                keywords="ejemplos enmarcados, galeria cuadros, taller artesanal paraguay, arte decorativo, marcos a medida"
+            />
             <div className="mb-8 flex items-center gap-4">
                 <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:bg-gray-100 p-2 rounded transition-colors text-sys-black">
                     <ArrowLeft /> <span>{t('back')}</span>
@@ -53,7 +57,7 @@ const Gallery = () => {
                 <h2 className="text-4xl font-serif font-bold">{t('nav_gallery')}</h2>
             </div>
 
-            <p className="text-lg text-sys-black/70 mb-8 -mt-6 font-serif italic">
+            <p className="text-xl text-sys-gray leading-relaxed font-light mb-12 -mt-4 max-w-2xl">
                 {t('gallery_subtitle')}
             </p>
 
@@ -61,17 +65,18 @@ const Gallery = () => {
                 {galleryImages.map((image, index) => (
                     <div
                         key={index}
-                        className="relative group h-96 cursor-pointer bg-white p-4 shadow-xl border border-gray-100 transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1"
+                        className="relative group h-[28rem] cursor-pointer bg-white overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700"
                         onClick={() => setSelectedImage(image)}
                     >
-                        <div className="relative w-full h-full overflow-hidden bg-gray-100">
+                        <div className="relative w-full h-full overflow-hidden bg-sys-light">
                             <img
                                 src={image}
                                 alt={`Gallery image ${index + 1}`}
-                                className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                                className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-[1.15]"
                             />
-                            <div className="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/70 to-transparent w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <p className="text-white text-xl font-serif">{t('gallery_item_label')} {index + 1}</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+                                <p className="text-white text-2xl font-serif tracking-wide">{t('gallery_item_label')} {index + 1}</p>
+                                <div className="w-12 h-[1px] bg-brand-gold mt-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
                             </div>
                         </div>
                     </div>
