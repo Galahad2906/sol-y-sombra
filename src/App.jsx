@@ -19,20 +19,6 @@ const Services = lazy(() => import('./pages/Services'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <HelmetProvider>
       <SmoothScroll />
