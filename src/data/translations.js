@@ -1,10 +1,10 @@
 export const translations = {
     es: {
         hero_title: "Molduras y Enmarcados Personalizados",
-        hero_subtitle: "Enmarcamos todo tipo de obras, materiales y estilos, desde piezas artísticas y decorativas hasta títulos, espejos y obras contemporáneas. Brindamos asesoría experta para seleccionar el marco ideal, integrando cada pieza con su entorno mediante arte, oficio y precisión.",
+        hero_subtitle: "Enmarcamos cuadros a medida, fotografías y todo tipo de obras de arte en Asunción. Brindamos asesoría experta para seleccionar el marco ideal, integrando cada pieza con su entorno mediante arte, oficio y precisión.",
         nav_about: "Nosotros",
         about_short_title: "Nuestra Historia",
-        about_short_text: "Sol y Sombra SRL es una empresa familiar fundada en 1995, especializada en arte y enmarcados de alta calidad. Nacimos como un pequeño taller y crecimos combinando la tradición artesanal con tecnología y herramientas de precisión, cuidando cada detalle y terminación. Ofrecemos la mayor variedad de molduras del país y un servicio totalmente personalizado, adaptado a cada obra y a cada espacio. Nuestro trabajo busca realzar el valor artístico de cada cuadro, integrándolo con estilo, diseño y vanguardia a su entorno.",
+        about_short_text: "Sol y Sombra SRL es una empresa familiar fundada en 1995, especializada en arte, cuadros decorativos y enmarcados de alta calidad en Asunción. Nacimos como un pequeño taller y crecimos combinando la tradición artesanal con tecnología y herramientas de precisión, cuidando cada detalle y terminación. Ofrecemos la mayor variedad de molduras del país y un servicio totalmente personalizado para encuadrar fotos y obras adaptadas a cada espacio. Nuestro trabajo busca realzar el valor artístico de cada cuadro, integrándolo con estilo, diseño y vanguardia a su entorno.",
         about_title: "Sol y Sombra SRL – Arte y Enmarcados",
         about_history: "Sol y Sombra SRL nació en el año 1995, como un pequeño taller de cuadros impulsado por la pasión por el arte, el detalle y el trabajo bien hecho. Desde sus inicios, la empresa se desarrolló como un emprendimiento familiar, construyendo su identidad sobre valores que permanecen intactos hasta hoy: compromiso, dedicación y respeto por cada obra que pasa por nuestras manos.",
         about_evolution: "Con el paso de los años, Sol y Sombra fue creciendo y evolucionando, incorporando nuevas técnicas, tecnología y herramientas de precisión, sin perder la esencia artesanal que nos distingue. Esta combinación entre lo tradicional y lo moderno nos permite ofrecer terminaciones de alta calidad, cuidando cada detalle del proceso.",
@@ -29,7 +29,7 @@ export const translations = {
 
         // Services Page
         services_framing_title: "Enmarcado a Medida",
-        services_framing_text: "En Sol y Sombra, nos especializamos en dar vida a sus recuerdos. Ofrecemos asesoramiento personalizado para encontrar el marco perfecto que resalte su obra sin opacarla. Todos nuestros trabajos incluyen Vidrio Mate de alta calidad para evitar reflejos.",
+        services_framing_text: "En Sol y Sombra, nos especializamos en dar vida a sus recuerdos y crear cuadros a medida en Asunción. Ofrecemos asesoramiento personalizado para encuadrar fotos o encontrar el marco perfecto que resalte su obra sin opacarla. Todos nuestros trabajos incluyen Vidrio Mate de alta calidad para evitar reflejos.",
         services_restoration_title: "Restauración",
         services_restoration_text: "Recuperamos la belleza de marcos antiguos y obras dañadas con técnicas profesionales de conservación.",
         services_width: "Ancho (cm)",
@@ -96,7 +96,7 @@ export const translations = {
     },
     en: {
         hero_title: "Art in Every Detail",
-        hero_subtitle: "Handcrafted framing, quality moldings, and decorative art to transform your spaces.",
+        hero_subtitle: "Custom picture framing, quality moldings, and decorative art to transform your spaces in Asunción.",
         nav_home: "Home",
         desc_home: "Welcome.",
         nav_molduras: "Moldings",
@@ -117,14 +117,14 @@ export const translations = {
         btn_download_pdf: "DOWNLOAD PDF QUOTE",
         nav_about: "About Us",
         about_short_title: "Our History",
-        about_short_text: "Sol y Sombra SRL is a family business founded in 1995, specialized in art and high-quality framing. We started as a small workshop and grew by combining artisanal tradition with technology and precision tools, caring for every detail. We offer the largest variety of moldings in the country and a personalized service, adapted to each work and space.",
+        about_short_text: "Sol y Sombra SRL is a family business founded in 1995, specialized in art and high-quality custom picture framing in Asunción. We started as a small workshop and grew by combining artisanal tradition with technology and precision tools, caring for every detail. We offer the largest variety of moldings in the country and a personalized photo framing service, adapted to each work and space.",
         about_title: "Sol y Sombra SRL – Art and Framing",
         about_history: "Sol y Sombra SRL was born in 1995 as a small framing workshop driven by a passion for art and detail. Since the beginning, the company developed as a family business, building its identity on values that remain intact today: commitment, dedication, and respect for every piece.",
         about_evolution: "Over the years, Sol y Sombra grew and evolved, incorporating new techniques, technology, and precision tools, without losing the artisanal essence that distinguishes us. This combination of traditional and modern allows us to offer high-quality finishes.",
 
         // Services Page
         services_framing_title: "Custom Framing",
-        services_framing_text: "At Sol y Sombra, we specialize in bringing your memories to life. We offer personalized advice to find the perfect frame that highlights your work without overshadowing it. All our work includes high-quality Matte Glass to avoid reflections.",
+        services_framing_text: "At Sol y Sombra, we specialize in bringing your memories to life with custom picture framing in Asunción. We offer personalized advice to frame your photos and find the perfect frame that highlights your work without overshadowing it. All our work includes high-quality Matte Glass to avoid reflections.",
         services_restoration_title: "Restoration",
         services_restoration_text: "We recover the beauty of old frames and damaged works with professional conservation techniques.",
         services_width: "Width (cm)",
@@ -191,7 +191,7 @@ export const translations = {
     },
     de: {
         hero_title: "Kunst in jedem Detail",
-        hero_subtitle: "Handgefertigte Einrahmungen, hochwertige Leisten und dekorative Kunst.",
+        hero_subtitle: "Maßgefertigte Einrahmungen, hochwertige Leisten und dekorative Kunst in Asunción.",
         nav_home: "Startseite",
         desc_home: "Willkommen.",
         nav_molduras: "Leisten",
@@ -212,14 +212,14 @@ export const translations = {
         btn_download_pdf: "PDF ANGEBOT HERUNTERLADEN",
         nav_about: "Über Uns",
         about_short_title: "Unsere Geschichte",
-        about_short_text: "Sol y Sombra SRL ist ein 1995 gegründetes Familienunternehmen, das sich auf Kunst und hochwertige Einrahmungen spezialisiert hat. Wir begannen als kleine Werkstatt und wuchsen durch die Kombination von handwerklicher Tradition mit Technologie und Präzision.",
+        about_short_text: "Sol y Sombra SRL ist ein 1995 gegründetes Familienunternehmen, das sich auf Kunst und maßgeschneiderte Einrahmungen in Asunción spezialisiert hat. Wir begannen als kleine Werkstatt und wuchsen durch die Kombination von handwerklicher Tradition mit Technologie und Präzision.",
         about_title: "Sol y Sombra SRL – Kunst und Einrahmung",
         about_history: "Sol y Sombra SRL wurde 1995 als kleine Einrahmungswerkstatt gegründet, angetrieben von der Leidenschaft für Kunst und Detail. Seit Beginn entwickelte sich das Unternehmen als Familienbetrieb.",
         about_evolution: "Im Laufe der Jahre wuchs und entwickelte sich Sol y Sombra weiter, indem neue Techniken und Technologien integriert wurden, ohne die handwerkliche Essenz zu verlieren.",
 
         // Services Page
         services_framing_title: "Maßanfertigung",
-        services_framing_text: "Bei Sol y Sombra sind wir darauf spezialisiert, Ihre Erinnerungen zum Leben zu erwecken. Wir bieten persönliche Beratung, um den perfekten Rahmen zu finden. Alle unsere Arbeiten beinhalten hochwertiges Mattglas.",
+        services_framing_text: "Bei Sol y Sombra sind wir darauf spezialisiert, maßgeschneiderte Bilderrahmen für Ihre Erinnerungen in Asunción zu fertigen. Wir bieten persönliche Beratung zum Einrahmen von Fotos und Kunstwerken. Alle unsere Arbeiten beinhalten hochwertiges Mattglas.",
         services_restoration_title: "Restaurierung",
         services_restoration_text: "Wir stellen die Schönheit alter Rahmen und beschädigter Werke mit professionellen Konservierungstechniken wieder her.",
         services_width: "Breite (cm)",

@@ -46,8 +46,8 @@ SEO.propTypes = {
 
 SEO.defaultProps = {
     title: 'Sol y Sombra',
-    description: 'Sol y Sombra - Enmarcados personalizados y galería de arte en Asunción, Paraguay.',
-    keywords: 'marcos, cuadros, arte, paraguay, asuncion, enmarcado, galeria',
+    description: 'Sol y Sombra - Cuadros a medida, enmarcado de fotos y decoración en Asunción, Paraguay.',
+    keywords: 'marcos para cuadros, cuadros a medida, encuadrar fotos paraguay, cuadros decorativos, arte paraguay, asuncion, enmarcados cerca de mi, galeria',
     name: 'Sol y Sombra',
     type: 'website',
     image: null,
