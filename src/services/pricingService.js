@@ -8,16 +8,22 @@ export const GLASS_TYPES = {
   MATE: { id: 'mate', name: 'Vidrio Mate', pricePerM2: 200000 }
 };
 
+export const PAYMENT_METHODS = {
+  TARJETA: { id: 'tarjeta', name: 'Tarjeta', multiplier: 1.15, label: 'Comisión Bancaria (5%) e IVA (10%)' },
+  EFECTIVO: { id: 'efectivo', name: 'Efectivo / Transferencia', multiplier: 1.10, label: 'IVA (10%)' }
+};
+
 /**
  * Calculates the price breakdown for a custom frame.
  * 
- * @param {number} widthCm Width in centimeters
- * @param {number} heightCm Height in centimeters
+ * @param {number} widthM Width in meters
+ * @param {number} heightM Height in meters
  * @param {number} moldingPricePerMeter Price of the molding per linear meter (Gs)
  * @param {string} glassTypeId ID of the glass type (sencillo | mate)
+ * @param {string} paymentMethodId ID of the payment method
  * @returns {object} Breakdown of costs and final price
  */
-export const calculateFramePrice = (widthM, heightM, moldingPricePerMeter, glassTypeId) => {
+export const calculateFramePrice = (widthM, heightM, moldingPricePerMeter, glassTypeId, paymentMethodId = 'tarjeta') => {
   // 1. Dimensions are already in meters
 
 
@@ -38,8 +44,9 @@ export const calculateFramePrice = (widthM, heightM, moldingPricePerMeter, glass
   // 6. Base Sale Price (x2 Markup)
   const baseSalePrice = materialSubtotal * 2;
 
-  // 7. Final Price (10% VAT + 5% Commission = 1.15)
-  const finalPrice = baseSalePrice * 1.15;
+  // 7. Final Price (Depends on payment method)
+  const paymentMethod = Object.values(PAYMENT_METHODS).find(p => p.id === paymentMethodId) || PAYMENT_METHODS.TARJETA;
+  const finalPrice = baseSalePrice * paymentMethod.multiplier;
 
   return {
     dimensions: {
@@ -55,7 +62,8 @@ export const calculateFramePrice = (widthM, heightM, moldingPricePerMeter, glass
     },
     prices: {
       base: baseSalePrice,
-      final: Math.ceil(finalPrice) // Round up to nearest integer
+      final: Math.ceil(finalPrice), // Round up to nearest integer
+      feeLabel: paymentMethod.label
     }
   };
 };

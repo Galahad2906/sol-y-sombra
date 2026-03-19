@@ -2,13 +2,14 @@ import { useState, useMemo } from 'react';
 import { Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { calculateFramePrice, GLASS_TYPES, formatCurrency } from '../../services/pricingService';
+import { calculateFramePrice, GLASS_TYPES, PAYMENT_METHODS, formatCurrency } from '../../services/pricingService';
 
 const FramingCalculator = () => {
     const [width, setWidth] = useState('');
     const [height, setHeight] = useState('');
     const [moldingPrice, setMoldingPrice] = useState('');
     const [glassType, setGlassType] = useState(GLASS_TYPES.SENCILLO.id);
+    const [paymentMethod, setPaymentMethod] = useState(PAYMENT_METHODS.TARJETA.id);
 
     const result = useMemo(() => {
         // Only calculate if we have valid numeric inputs
@@ -18,8 +19,8 @@ const FramingCalculator = () => {
 
         if (!w || !h || !m) return null;
 
-        return calculateFramePrice(w, h, m, glassType);
-    }, [width, height, moldingPrice, glassType]);
+        return calculateFramePrice(w, h, m, glassType, paymentMethod);
+    }, [width, height, moldingPrice, glassType, paymentMethod]);
 
     const generatePDF = () => {
         if (!result) return;
@@ -82,7 +83,7 @@ const FramingCalculator = () => {
             ["Costo Vidrio", formatCurrency(result.costs.glass)],
             ["Subtotal Materiales", formatCurrency(result.costs.materialSubtotal)],
             ["Mano de Obra y Rentabilidad", formatCurrency(result.prices.base - result.costs.materialSubtotal)],
-            ["Comisión Bancaria (5%) e IVA (10%)", formatCurrency(result.prices.final - result.prices.base)],
+            [result.prices.feeLabel, formatCurrency(result.prices.final - result.prices.base)],
             [{ content: "PRECIO FINAL", styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }, { content: formatCurrency(result.prices.final), styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }]
         ];
 
@@ -163,6 +164,22 @@ const FramingCalculator = () => {
                     </select>
                 </div>
 
+                {/* Payment Method */}
+                <div className="space-y-1">
+                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Método de Pago</label>
+                    <select
+                        value={paymentMethod}
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all cursor-pointer"
+                    >
+                        {Object.values(PAYMENT_METHODS).map((method) => (
+                            <option key={method.id} value={method.id}>
+                                {method.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 {/* Results Section */}
                 {result ? (
                     <div className="mt-6 pt-6 border-t border-dashed border-gray-200 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -184,7 +201,7 @@ const FramingCalculator = () => {
                                 <span className="font-mono">{formatCurrency(result.prices.base - result.costs.materialSubtotal)}</span>
                             </div>
                             <div className="flex justify-between text-sm text-gray-600">
-                                <span>Comisión Bancaria (5%) e IVA (10%)</span>
+                                <span>{result.prices.feeLabel}</span>
                                 <span className="font-mono">{formatCurrency(result.prices.final - result.prices.base)}</span>
                             </div>
                         </div>
