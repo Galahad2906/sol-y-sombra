@@ -17,10 +17,9 @@ export const GLASS_TYPES = {
  * @param {string} glassTypeId ID of the glass type (sencillo | mate)
  * @returns {object} Breakdown of costs and final price
  */
-export const calculateFramePrice = (widthCm, heightCm, moldingPricePerMeter, glassTypeId) => {
-  // 1. Convert dimensions to meters
-  const widthM = widthCm / 100;
-  const heightM = heightCm / 100;
+export const calculateFramePrice = (widthM, heightM, moldingPricePerMeter, glassTypeId) => {
+  // 1. Dimensions are already in meters
+
 
   // 2. Calculate Perimeter (Linear Meters)
   const perimeter = (widthM + heightM) * 2;

@@ -17,6 +17,7 @@ const Catalog = lazy(() => import('./pages/Catalog'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Services = lazy(() => import('./pages/Services'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const CalculatorPage = lazy(() => import('./pages/CalculatorPage'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/galeria" element={<Gallery />} />
             <Route path="/servicios" element={<Services />} />
+            <Route path="/cotizador" element={<CalculatorPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

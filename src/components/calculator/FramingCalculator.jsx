@@ -46,7 +46,7 @@ const FramingCalculator = () => {
 
         // Dimensions
         doc.setFontSize(12);
-        doc.text(`Medidas: ${width} cm x ${height} cm`, 20, 35);
+        doc.text(`Medidas: ${width} m x ${height} m`, 20, 35);
 
         // Breakdown Table
         const tableBody = [
@@ -81,13 +81,8 @@ const FramingCalculator = () => {
             ["Costo Moldura", formatCurrency(result.costs.molding)],
             ["Costo Vidrio", formatCurrency(result.costs.glass)],
             ["Subtotal Materiales", formatCurrency(result.costs.materialSubtotal)],
-            // The "gap" to reach final price is large (Markup + VAT). 
-            // If I only show "IVA + Comisiones (15%)" it might look like bad math if I proceed directly to Total.
-            // But I will follow instructions: Molding, Glass, Subtotal, Fees, Total.
-            // I'll label the gap "Mano de Obra, Utilidad e Impuestos" to be professional, 
-            // OR just "IVA + Servicios" as requested but calculating the difference.
-            ["Mano de Obra, Utilidad e IVA", formatCurrency(result.prices.final - result.costs.materialSubtotal)],
-            // Using difference to ensure sum matches Total exactly.
+            ["Mano de Obra y Rentabilidad", formatCurrency(result.prices.base - result.costs.materialSubtotal)],
+            ["Comisión Bancaria (5%) e IVA (10%)", formatCurrency(result.prices.final - result.prices.base)],
             [{ content: "PRECIO FINAL", styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }, { content: formatCurrency(result.prices.final), styles: { fontStyle: 'bold', fillColor: [240, 240, 240] } }]
         ];
 
@@ -117,22 +112,24 @@ const FramingCalculator = () => {
                 {/* Input Dimensions Group */}
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ancho (cm)</label>
+                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ancho (m)</label>
                         <input
                             type="number"
                             value={width}
                             onChange={(e) => setWidth(e.target.value)}
-                            placeholder="0"
+                            step="0.01"
+                            placeholder="0.00"
                             className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all font-mono"
                         />
                     </div>
                     <div className="space-y-1">
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alto (cm)</label>
+                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alto (m)</label>
                         <input
                             type="number"
                             value={height}
                             onChange={(e) => setHeight(e.target.value)}
-                            placeholder="0"
+                            step="0.01"
+                            placeholder="0.00"
                             className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all font-mono"
                         />
                     </div>
@@ -181,6 +178,14 @@ const FramingCalculator = () => {
                             <div className="flex justify-between text-sm text-gray-800 font-semibold pt-2 border-t border-gray-100">
                                 <span>Subtotal Materiales</span>
                                 <span className="font-mono">{formatCurrency(result.costs.materialSubtotal)}</span>
+                            </div>
+                            <div className="flex justify-between text-sm text-gray-600">
+                                <span>Mano de Obra y Rentabilidad</span>
+                                <span className="font-mono">{formatCurrency(result.prices.base - result.costs.materialSubtotal)}</span>
+                            </div>
+                            <div className="flex justify-between text-sm text-gray-600">
+                                <span>Comisión Bancaria (5%) e IVA (10%)</span>
+                                <span className="font-mono">{formatCurrency(result.prices.final - result.prices.base)}</span>
                             </div>
                         </div>
 
