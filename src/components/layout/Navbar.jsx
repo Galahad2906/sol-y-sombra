@@ -54,7 +54,6 @@ const Navbar = () => {
                     <Link to="/inicio" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_home')}</Link>
                     <Link to="/nosotros" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_about')}</Link>
                     <Link to="/molduras" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_molduras')}</Link>
-                    <Link to="/catalogo" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_catalog')}</Link>
                     <Link to="/galeria" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_gallery')}</Link>
                     <Link to="/servicios" className="py-2 text-lg font-bold" onClick={() => setIsOpen(false)}>{t('nav_services')}</Link>
                 </div>

@@ -34,7 +34,6 @@ const Landing = () => {
     const links = [
         { to: "/inicio", icon: HomeIcon, label: 'nav_home', desc: 'desc_home', bg: "bg-gray-100", hoverBg: "hover:bg-gray-50", iconColor: "text-gray-400" },
         { to: "/molduras", icon: Grid2X2, label: 'nav_molduras', desc: 'desc_molduras', bg: "bg-gray-200", hoverBg: "hover:bg-gray-100", iconColor: "text-gray-500" },
-        { to: "/catalogo", icon: Grid3X3, label: 'nav_catalog', desc: 'desc_catalog', bg: "bg-gray-300", hoverBg: "hover:bg-gray-200", iconColor: "text-gray-600" },
         { to: "/galeria", icon: ImageIcon, label: 'nav_gallery', desc: 'desc_gallery', bg: "bg-gray-400", hoverBg: "hover:bg-gray-300", iconColor: "text-gray-700" },
         { to: "/servicios", icon: Calculator, label: 'nav_services', desc: 'desc_services', bg: "bg-gray-500", hoverBg: "hover:bg-gray-400", iconColor: "text-white" },
     ];
