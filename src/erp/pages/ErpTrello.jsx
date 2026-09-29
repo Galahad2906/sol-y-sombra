@@ -517,7 +517,7 @@ const ErpTrello = () => {
                   placeholder="Corte de moldura a 45 grados&#10;Corte de vidrio mate&#10;Colocar paspartú y sellado posterior"
                   value={newCardForm.checklists}
                   onChange={(e) => setNewCardForm({ ...newCardForm, checklists: e.target.value })}
-                  className="w-full px-3.5 py-2 bg-neutral-950 border border-neutral-800 rounded-xl text-sm text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-amber-500 font-mono text-xs"
+                  className="w-full px-3.5 py-2 bg-neutral-950 border border-neutral-800 rounded-xl text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-amber-500 font-mono text-xs"
                 />
               </div>
 
@@ -619,7 +619,7 @@ const ErpTrello = () => {
                 <h4 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">
                   Especificaciones y Notas de Taller
                 </h4>
-                <div className="p-3.5 bg-neutral-950 rounded-xl border border-neutral-800 text-sm text-neutral-300 leading-relaxed font-mono text-xs">
+                <div className="p-3.5 bg-neutral-950 rounded-xl border border-neutral-800 text-neutral-300 leading-relaxed font-mono text-xs">
                   {selectedCard.description}
                 </div>
               </div>
